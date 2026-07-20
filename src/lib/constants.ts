@@ -3,7 +3,7 @@ export const SITE_CONFIG = {
   tagline: "Building the Future with Code",
   description:
     "DevNova Tech builds powerful digital solutions that drive business growth and create exceptional experiences.",
-  url: "https://devnovatech.com",
+  url: "https://devnova.moeez.online",
   email: "hello@devnovatech.com",
   phone: "+92 300 1234567",
   location: "Lahore, Pakistan",
