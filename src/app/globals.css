@@ -1,26 +1,102 @@
 @import "tailwindcss";
 
+@theme {
+  /* Colors */
+  --color-base-950: #05060F;
+  --color-base-900: #0A0C1B;
+  --color-base-800: #10132A;
+  --color-base-700: #171B3A;
+
+  --color-accent-violet: #6C4CF1;
+  --color-accent-blue: #3B7CF6;
+  --color-accent-cyan: #4CD8F1;
+
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-glass-fill: rgba(255, 255, 255, 0.04);
+
+  --color-text-primary: #F5F6FA;
+  --color-text-muted: #9CA3B8;
+  --color-text-faint: #5C6178;
+
+  /* Fonts */
+  --font-display: "Clash Display", "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  /* Shadows */
+  --shadow-glow: 0 0 40px rgba(108, 76, 241, 0.35);
+  --shadow-glow-sm: 0 0 20px rgba(108, 76, 241, 0.25);
+
+  /* Border radius */
+  --radius-xl2: 1.25rem;
+
+  /* Backdrop blur */
+  --blur-xs: 2px;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-display: "Clash Display", "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  scroll-behavior: auto; /* Lenis handles smooth scroll, not native */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  background-color: #05060f;
+  color: #f5f6fa;
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+}
+
+/* Custom utilities using @utility (v4's replacement for arbitrary plugin classes) */
+@utility bg-brand-gradient {
+  background-image: linear-gradient(135deg, #6C4CF1 0%, #3B7CF6 100%);
+}
+
+@utility bg-nebula-gradient {
+  background-image: radial-gradient(circle at 50% 30%, rgba(108, 76, 241, 0.25), transparent 60%);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #05060f;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6c4cf1, #3b7cf6);
+  border-radius: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid #6c4cf1;
+  outline-offset: 3px;
+  border-radius: 4px;
 }
