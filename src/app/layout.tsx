@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { SmoothScrollProvider } from "@/lib/smooth-scroll";
 import { SkipLink } from "@/components/layout/SkipLink";
+import { Preloader } from "@/components/ui/Preloader";
 import { SITE_CONFIG } from "@/lib/constants";
 import "./globals.css";
 
@@ -87,6 +88,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-base-950 text-text-primary antialiased">
+        <Preloader />
         <SkipLink />
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
