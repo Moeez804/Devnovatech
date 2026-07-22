@@ -5,18 +5,17 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { StatCard } from "@/components/ui/StatCard";
 import { prefersReducedMotion } from "@/lib/utils";
-import type { StatItem } from "@/types";
+import { FiBox, FiHeadphones } from "react-icons/fi";
+import { HiOutlineRocketLaunch, HiOutlineUserGroup } from "react-icons/hi2";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const STATS: StatItem[] = [
-  { id: "projects", value: 100, suffix: "+", label: "Projects Completed" },
-  { id: "technologies", value: 15, suffix: "+", label: "Technologies" },
-  { id: "clients", value: 50, suffix: "+", label: "Happy Clients" },
-  { id: "support", value: 24, suffix: "/7", label: "Support" },
+const STATS = [
+  { id: "projects", icon: FiBox, accentColor: "#4C9EFF", value: 100, suffix: "+", label: "Projects Completed" },
+  { id: "technologies", icon: HiOutlineRocketLaunch, accentColor: "#B366FF", value: 15, suffix: "+", label: "Technologies" },
+  { id: "clients", icon: HiOutlineUserGroup, accentColor: "#4C9EFF", value: 50, suffix: "+", label: "Happy Clients" },
+  { id: "support", icon: FiHeadphones, accentColor: "#B366FF", value: 24, suffix: "/7", label: "Support Available" },
 ];
-
-const BRAND_LOGOS = ["logoipsum", "logoipsum", "logoipsum", "logoipsum"];
 
 export function Statistics() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -45,37 +44,30 @@ export function Statistics() {
     <section className="relative z-10 -mt-16 px-6 md:px-10">
       <div
         ref={sectionRef}
-        className="glass-panel mx-auto flex max-w-6xl flex-col gap-6 rounded-xl2 p-6 shadow-glow-sm md:flex-row md:items-center md:gap-0 md:p-8"
+        className="relative mx-auto flex max-w-6xl flex-col overflow-hidden rounded-2xl border border-white/8 bg-base-900/70 backdrop-blur-xl sm:flex-row"
       >
-        <div className="flex flex-1 flex-col gap-4 sm:flex-row sm:gap-0 md:border-r md:border-white/10 md:pr-6">
-          {STATS.map((stat, i) => (
-            <StatCard
-              key={stat.id}
-              value={stat.value}
-              suffix={stat.suffix}
-              label={stat.label}
-              divider={i < STATS.length - 1}
-              duration={1.4 + i * 0.2}
-            />
-          ))}
-        </div>
+        {/* Glowing gradient line across the top edge */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-violet to-transparent opacity-70"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-1/4 -top-8 h-16 rounded-full bg-accent-violet/20 blur-2xl"
+        />
 
-        <div className="flex flex-col gap-3 md:pl-6">
-          <span className="text-center text-[10px] uppercase tracking-widest text-text-faint md:text-left">
-            Trusted by global brands
-          </span>
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 md:justify-start">
-            {BRAND_LOGOS.map((logo, i) => (
-              <span
-                key={`${logo}-${i}`}
-                className="text-sm font-medium italic text-text-faint opacity-60"
-                aria-hidden="true"
-              >
-                {logo}
-              </span>
-            ))}
-          </div>
-        </div>
+        {STATS.map((stat, i) => (
+          <StatCard
+            key={stat.id}
+            icon={stat.icon}
+            accentColor={stat.accentColor}
+            value={stat.value}
+            suffix={stat.suffix}
+            label={stat.label}
+            divider={i < STATS.length - 1}
+            duration={1.4 + i * 0.2}
+          />
+        ))}
       </div>
     </section>
   );
