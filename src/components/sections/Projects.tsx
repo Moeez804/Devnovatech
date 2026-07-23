@@ -115,14 +115,14 @@ export function Projects() {
       </motion.div>
 
       {/* Desktop: pinned horizontal scroll track. Mobile: native horizontal swipe with scroll-snap, no pin-jacking. */}
-      <div
-        ref={trackRef}
-        className={
-          isDesktop
-            ? "flex gap-6 px-6 will-change-transform md:px-10"
-            : "flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-4 [-webkit-overflow-scrolling:touch]"
-        }
-      >
+<div
+  ref={trackRef}
+  className={
+    isDesktop
+      ? "flex items-center gap-6 px-[10vw] will-change-transform md:px-[15vw]"
+      : "flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-4 [-webkit-overflow-scrolling:touch]"
+  }
+>
         {PROJECTS.map((project) => (
           <div key={project.id} className={!isDesktop ? "snap-center" : ""}>
             <ProjectCard project={project} accentColor={project.accentColor} />
